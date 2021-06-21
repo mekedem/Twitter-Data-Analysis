@@ -38,8 +38,10 @@ class TweetDfExtractor:
         statuses_count 
         
     def find_full_text(self)->list:
-        text = 
-       
+        text = []
+        for t in self.tweets_list:
+            text.append(t['text'])
+        return text
     
     def find_sentiments(self, text)->list:
         
@@ -134,5 +136,3 @@ if __name__ == "__main__":
     tweet_df = tweet.get_tweet_df() 
 
     # use all defined functions to generate a dataframe with the specified columns above
-
-    
