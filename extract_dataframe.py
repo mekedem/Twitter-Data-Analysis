@@ -40,8 +40,12 @@ class TweetDfExtractor:
     def find_full_text(self)->list:
         retweeted_status = [x.get("retweeted_status", {}) for x in self.tweets_list]
         full_text = [(x.get("extended_tweet", {})).get("full_text", None) for x in retweeted_status]
-        filtered_text = [x for x in full_text if x != None]
-        full_text = ''.join(filtered_text)
+        filtered = []
+        for x in full_text:
+            if x != None:
+                filtered.append(x)
+
+        full_text = ''.join(filtered)
         return full_text
        
     
@@ -106,7 +110,7 @@ class TweetDfExtractor:
     def find_lang(self) -> list:
       return [x.get('lang', None) for x in self.tweets_list]
         
-    def get_tweet_df(self, save=True)->pd.DataFrame:
+    def get_tweet_df(self, save=False)->pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
         
         columns = ['created_at', 'source', 'original_text','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
