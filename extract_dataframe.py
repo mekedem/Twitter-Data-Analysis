@@ -42,7 +42,7 @@ class TweetDfExtractor:
         for t in self.tweets_list:
             text.append(t['text'])
         return text
-    
+        
     def find_sentiments(self, text)->list:
         
         return polarity, self.subjectivity
